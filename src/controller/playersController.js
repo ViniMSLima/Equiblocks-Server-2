@@ -18,7 +18,7 @@ class PlayerController {
         if (!nome || !data || !tempo || !f1 || !f2 || !f3 || !f4 || !f5 || !tentativas || !qtd_formas)
             return res.status(400).send({ message: 'Field\'s can\'t be empty' });
 
-        const player = new Player({
+        const player = new Player2({
             nome,
             data,
             tempo,
