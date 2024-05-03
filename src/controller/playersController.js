@@ -13,9 +13,9 @@ class PlayerController {
       }
 
     static async postPlayer(req, res) {
-        const { nome, data, tempo, f1, f2, f3, f4, f5 } = req.body;
+        const { nome, data, tempo, f1, f2, f3, f4, f5, tentativas, qtd_formas } = req.body;
 
-        if (!nome || !data || !tempo || !f1 || !f2 || !f3 || !f4 || !f5)
+        if (!nome || !data || !tempo || !f1 || !f2 || !f3 || !f4 || !f5 || !tentativas || !qtd_formas)
             return res.status(400).send({ message: 'Field\'s can\'t be empty' });
 
         const player = new Player({
@@ -27,6 +27,8 @@ class PlayerController {
             f3,
             f4,
             f5,
+            tentativas,
+            qtd_formas,
             release: Date.now(),
             createdAt: Date.now(),
         });
@@ -66,5 +68,7 @@ module.exports = PlayerController;
 //     "f2": 2,
 //     "f3": 3,
 //     "f4": 4,
-//     "f5": 5 
+//     "f5": 5 ,
+//     "tentativas": 2,
+//     "qtd_formas": 12
 // }
