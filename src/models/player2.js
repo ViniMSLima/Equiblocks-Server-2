@@ -36,6 +36,14 @@ const Player2Schema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  tentativas: {
+    type: Number,
+    required: true,
+  },
+  qtd_formas: {
+    type: Number,
+    required: true,
+  },
   createdAt: {
     type: Date,
     required: true,

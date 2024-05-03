@@ -1,11 +1,11 @@
-const { Player } = require("../models/player2");
+const { Player2 } = require("../models/player2");
 
 require("dotenv").config();
 
 class PlayerController {
     static async getPlayers(req, res) {
         try {
-          const players = await Player.find();
+          const players = await Player2.find();
           return res.status(200).send({ players });
         } catch (error) {
           return res.status(404).send({ error: 'Game not found!' });
@@ -45,7 +45,7 @@ class PlayerController {
 
     static async clearPlayers(req, res) {
         try {
-            await Player.deleteMany({});
+            await Player2.deleteMany({});
             return res.status(200).send({ message: 'All players deleted successfully' });
         } catch (error) {
             console.error(error);
