@@ -1,5 +1,5 @@
 const express = require("express");
-const player2 = require("../src/routes/player");
+const player2 = require("../src/routes/player2");
 
 module.exports = function (app) 
 {
