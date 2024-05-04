@@ -6,7 +6,7 @@
         { "src": "/api/getplayers", "dest": "/" },
         { "src": "/api/postplayer", "dest": "/" },
         { "src": "/api/deleteplayers", "dest": "/" },
-        { "src": "/challenge/getstatus", "dest": "/", "headers": "Access-Control-Allow-Origin" },
+        { "src": "/challenge/getstatus", "dest": "/"},
         { "src": "/challenge/start", "dest": "/" },
         { "src": "/challenge/stop", "dest": "/" }
       ]
