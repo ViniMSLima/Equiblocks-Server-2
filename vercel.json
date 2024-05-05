@@ -9,7 +9,8 @@
         { "src": "/challenge/getstatus", "dest": "/"},
         { "src": "/challenge/start", "dest": "/" },
         { "src": "/challenge/stop", "dest": "/" },
-        { "src": "/challenge/startteste", "dest": "/" },
-        { "src": "/challenge/stopteste", "dest": "/" }
+        { "src": "/test/getstatustest", "dest": "/"},
+        { "src": "/test/startteste", "dest": "/" },
+        { "src": "/test/stopteste", "dest": "/" }
       ]
 }
