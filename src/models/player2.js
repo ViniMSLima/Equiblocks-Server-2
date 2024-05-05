@@ -44,6 +44,10 @@ const Player2Schema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  acertos: {
+    type: Number,
+    required: true,
+  },
   createdAt: {
     type: Date,
     required: true,
