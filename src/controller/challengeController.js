@@ -21,7 +21,7 @@ class ChallengeController {
                     timer = setTimeout(() => {
                         status = false;
                         timer = null;
-                    }, 5000); // 30 minutos em milissegundos
+                    }, 1800000); // 30 minutos em milissegundos
                 }
                 return res.status(200).send({ status });
             } else {
