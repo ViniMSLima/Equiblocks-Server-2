@@ -9,5 +9,5 @@ module.exports = function (app)
     .use(express.json())
     .use("/api", player2)
     .use("/challenge", challenge)
-    .use("/teste", test)
+    .use("/test", test)
 };
