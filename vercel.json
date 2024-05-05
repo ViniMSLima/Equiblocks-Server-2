@@ -8,9 +8,6 @@
         { "src": "/api/deleteplayers", "dest": "/" },
         { "src": "/challenge/getstatus", "dest": "/"},
         { "src": "/challenge/start", "dest": "/" },
-        { "src": "/challenge/stop", "dest": "/" },
-        { "src": "/test/getstatustest", "dest": "/"},
-        { "src": "/test/starttest", "dest": "/" },
-        { "src": "/test/stoptest", "dest": "/" }
+        { "src": "/challenge/stop", "dest": "/" }
       ]
 }
