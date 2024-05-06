@@ -17,12 +17,12 @@ class ChallengeController {
             if (!status) {
                 status = true;
                 // Inicia a contagem de 30 minutos apenas se ainda não estiver em andamento
-                if (!timer) {
-                    timer = setTimeout(() => {
-                        status = false;
-                        timer = null;
-                    }, 2100000); // 35 minutos em milissegundos
-                }
+                // if (!timer) {
+                //     timer = setTimeout(() => {
+                //         status = false;
+                //         timer = null;
+                //     }, 2100000); // 35 minutos em milissegundos
+                // }
                 return res.status(200).send({ status });
             } else {
                 return res.status(200).send({ status });
