@@ -9,7 +9,7 @@
         { "src": "/challenge/getstatus", "dest": "/"},
         { "src": "/challenge/start", "dest": "/" },
         { "src": "/challenge/stop", "dest": "/" },
-        { "src": "/challenge/postavalues", "dest": "/" },
+        { "src": "/challenge/postvalues", "dest": "/" },
         { "src": "/challenge/getvalues", "dest": "/" }
       ]
 }
