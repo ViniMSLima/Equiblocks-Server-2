@@ -6,5 +6,7 @@ router
   .get("/getstatus", ChallengeController.getstatus)
   .get("/start", ChallengeController.start)
   .get("/stop", ChallengeController.stop)
+  .post("/postavalues", ChallengeController.postValues)
+  .get("/getvalues", ChallengeController.getValues)
 
 module.exports = router;
