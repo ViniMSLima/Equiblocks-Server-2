@@ -35,7 +35,7 @@ class PlayerController {
         });
 
         try {
-            // await player.save();
+            await player.save();
             res.status(201).send({ message: 'Player registered successfully' });
         } catch (error) {
             console.log(error)
