@@ -15,7 +15,7 @@ class PlayerController {
     static async postPlayer(req, res) {
         const { nome, data, tempo, f1, f2, f3, f4, f5, tentativas, qtd_formas, acertos } = req.body;
 
-        if (!nome || !data || !tempo || !f1 || !f2 || !f3 || !f4 || !f5 || !tentativas || !qtd_formas || !acertos)
+        if (!nome || !data || !tempo || !f1 || !f2 || !f3 || !f4 || !f5)
             return res.status(400).send({ message: 'Field\'s can\'t be empty' });
 
         const player = new Player2({
@@ -35,7 +35,7 @@ class PlayerController {
         });
 
         try {
-            await player.save();
+            // await player.save();
             res.status(201).send({ message: 'Player registered successfully' });
         } catch (error) {
             console.log(error)
