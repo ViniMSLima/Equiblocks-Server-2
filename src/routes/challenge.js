@@ -3,7 +3,7 @@ const ChallengeController = require("../controller/challengeController");
 const router = express.Router();
 
 router
-  .get("/getstatus", ChallengeController.getstatus)
+  .get("/getstatus", ChallengeController.getStatus)
   .get("/start", ChallengeController.start)
   .get("/stop", ChallengeController.stop)
   .post("/postvalues", ChallengeController.postValues)

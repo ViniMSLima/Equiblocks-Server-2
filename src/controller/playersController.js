@@ -5,12 +5,12 @@ require("dotenv").config();
 class PlayerController {
     static async getPlayers(req, res) {
         try {
-          const players = await Player2.find();
-          return res.status(200).send({ players });
+            const players = await Player2.find();
+            return res.status(200).send({ players });
         } catch (error) {
-          return res.status(404).send({ error: 'Players not found!' });
+            return res.status(404).send({ error: 'Players not found!' });
         }
-      }
+    }
 
     static async postPlayer(req, res) {
         const { nome, data, tempo, f1, f2, f3, f4, f5, tentativas, qtd_formas, acertos } = req.body;
@@ -53,7 +53,7 @@ class PlayerController {
             return res.status(500).send({ message: 'Something went wrong while clearing players' });
         }
     }
-    
+
 }
 
 module.exports = PlayerController;

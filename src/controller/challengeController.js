@@ -1,78 +1,89 @@
 require("dotenv").config();
+const { Status } = require("../models/status");
+const { Values } = require("../models/values");
 
-let status = false;
-let timer = null;
 
-let F1 = 100;
-let F2 = 200;
-let F3 = 500;
-let F4 = 700;
-let F5 = 1000;
+// let status = false;
+// let timer = null;
 
-let values = [100, 200, 500, 700, 1000]
+// let values = [100, 200, 500, 700, 1000];
 
 class ChallengeController {
-    static async getstatus(req, res) {
+    static async getStatus(req, res) {
         try {
-            return res.status(200).send({ status });
+            const statusDoc = await Status.findOne(); 
+            if (!statusDoc) {
+                return res.status(404).send({ error: 'Status not found' });
+            }
+            return res.status(200).send({ status: statusDoc.status });
         } catch (error) {
-            return res.status(404).send({ error: 'Error while getting status' });
+            return res.status(500).send({ error: 'Error while getting status' });
         }
     }
 
     static async start(req, res) {
         try {
-            if (!status) {
-                status = true;
-                // Inicia a contagem de 30 minutos apenas se ainda não estiver em andamento
-                // if (!timer) {
-                //     timer = setTimeout(() => {
-                //         status = false;
-                //         timer = null;
-                //     }, 2100000); // 35 minutos em milissegundos
-                // }
-                return res.status(200).send({ status });
+            let statusDoc = await Status.findOne(); 
+            if (!statusDoc) {
+                statusDoc = new Status({ status: true });
+                await statusDoc.save();
             } else {
-                return res.status(200).send({ status });
+                statusDoc.status = true; 
+                await statusDoc.save();
             }
+            return res.status(200).send({ status: statusDoc.status });
         } catch (error) {
-            return res.status(404).send({ error: 'Error while starting' });
+            return res.status(500).send({ error: 'Error while starting' });
         }
     }
 
     static async stop(req, res) {
         try {
-            status = false;
-            if (timer) {
-                clearTimeout(timer);
-                timer = null;
+            let statusDoc = await Status.findOne();
+            if (!statusDoc) {
+                statusDoc = new Status({ status: false });
+                await statusDoc.save(); 
+            } else {
+                statusDoc.status = false; 
+                await statusDoc.save(); 
             }
-            return res.status(200).send({ status });
+            return res.status(200).send({ status: statusDoc.status });
         } catch (error) {
-            return res.status(404).send({ error: 'Error while stopping' });
+            return res.status(500).send({ error: 'Error while stopping' });
         }
     }
 
     static async postValues(req, res) {
         const { newValues } = req.body;
 
-        if (!newValues)
-            return res.status(400).send({ message: 'Field\'s can\'t be empty' });
+        if (!newValues || !Array.isArray(newValues) || newValues.length !== 5)
+            return res.status(400).send({ message: 'Invalid or missing values' });
 
         try {
-            values = newValues
+            const valuesDoc = await Values.findOne();
+            if (!valuesDoc) {
+                const newValuesDoc = new Values({ values: newValues });
+                await newValuesDoc.save();
+            } else {
+                valuesDoc.values = newValues;
+                await valuesDoc.save();
+            }
             res.status(201).send({ message: 'Values registered successfully' });
         } catch (error) {
-            console.log(error)
+            console.log(error);
             return res.status(500).send({ message: 'Something failed while registering values' });
         }
     }
 
     static async getValues(req, res) {
         try {
-            return res.status(200).send({ values });
+            const valuesDoc = await Values.findOne();
+            if (!valuesDoc) {
+                return res.status(404).send({ error: 'Values not found' });
+            }
+            return res.status(200).send({ values: valuesDoc.values });
         } catch (error) {
-            return res.status(404).send({ error: 'Error while getting values' });
+            return res.status(500).send({ error: 'Error while getting values' });
         }
     }
 }
