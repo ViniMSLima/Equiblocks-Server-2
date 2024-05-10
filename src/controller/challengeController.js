@@ -94,25 +94,26 @@ class ChallengeController {
             if (!timeDoc) {
                 return res.status(404).send({ error: 'Time not found' });
             }
-            return res.status(200).send({ time: timeDoc.time });
+            return res.status(200).send({ hora: timeDoc.hora, minuto: timeDoc.minuto });
         } catch (error) {
             return res.status(500).send({ error: 'Error while getting time' });
         }
     }
 
     static async postTime(req, res) {
-        const { newTime } = req.body;
+        const { hora, minuto } = req.body;
         
         try {
             let timeDoc = await Time.findOne();
             if (!timeDoc) {
-                timeDoc = new Time({ time: newTime });
+                timeDoc = new Time({ hora: hora, minuto: minuto });
                 await timeDoc.save(); 
             } else {
-                timeDoc.time = newTime; 
+                timeDoc.hora = hora; 
+                timeDoc.minuto = minuto; 
                 await timeDoc.save(); 
             }
-            return res.status(200).send({ status: timeDoc.time });
+            return res.status(200).send({ hora: timeDoc.hora, minuto: timeDoc.minuto });
         } catch (error) {
             return res.status(500).send({ error: 'Error while setting time' });
         }

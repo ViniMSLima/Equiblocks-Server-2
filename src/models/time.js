@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 
 const TimeSchema = new mongoose.Schema({
-    time: {
+    hora: {
+        type: Number, // Tempo de desafio
+        required: true,
+    },
+    minuto: {
         type: Number, // Tempo de desafio
         required: true,
     }
