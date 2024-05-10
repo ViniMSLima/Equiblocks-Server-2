@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { Status } = require("../models/status");
 const { Values } = require("../models/values");
+const { Time } = require("../models/time");
 
 
 // let status = false;
@@ -84,6 +85,36 @@ class ChallengeController {
             return res.status(200).send({ values: valuesDoc.values });
         } catch (error) {
             return res.status(500).send({ error: 'Error while getting values' });
+        }
+    }
+
+    static async getTime(req, res) {
+        try {
+            const timeDoc = await Time.findOne(); 
+            if (!timeDoc) {
+                return res.status(404).send({ error: 'Time not found' });
+            }
+            return res.status(200).send({ time: timeDoc.time });
+        } catch (error) {
+            return res.status(500).send({ error: 'Error while getting time' });
+        }
+    }
+
+    static async postTime(req, res) {
+        const { newTime } = req.body;
+        
+        try {
+            let timeDoc = await Time.findOne();
+            if (!timeDoc) {
+                timeDoc = new Time({ time: newTime });
+                await timeDoc.save(); 
+            } else {
+                timeDoc.time = newTime; 
+                await timeDoc.save(); 
+            }
+            return res.status(200).send({ status: timeDoc.time });
+        } catch (error) {
+            return res.status(500).send({ error: 'Error while setting time' });
         }
     }
 }
