@@ -10,6 +10,8 @@
         { "src": "/challenge/start", "dest": "/" },
         { "src": "/challenge/stop", "dest": "/" },
         { "src": "/challenge/postvalues", "dest": "/" },
-        { "src": "/challenge/getvalues", "dest": "/" }
+        { "src": "/challenge/getvalues", "dest": "/" },
+        { "src": "/challenge/gettime", "dest": "/" },
+        { "src": "/challenge/posttime", "dest": "/" }
       ]
 }
