@@ -16,7 +16,7 @@ class ChallengeController {
             if (!statusDoc) {
                 return res.status(404).send({ error: 'Status not found' });
             }
-            return res.status(200).send({ status: statusDoc });
+            return res.status(200).send({ status: statusDoc.status, finished: statusDoc.finished });
         } catch (error) {
             return res.status(500).send({ error: 'Error while getting status' });
         }
@@ -33,7 +33,7 @@ class ChallengeController {
                 statusDoc.finished = false; 
                 await statusDoc.save();
             }
-            return res.status(200).send({ status: statusDoc });
+            return res.status(200).send({ status: statusDoc.status, finished: statusDoc.finished });
         } catch (error) {
             return res.status(500).send({ error: 'Error while starting' });
         }
@@ -50,7 +50,7 @@ class ChallengeController {
                 statusDoc.finished = false; 
                 await statusDoc.save(); 
             }
-            return res.status(200).send({ status: statusDoc });
+            return res.status(200).send({ status: statusDoc.status, finished: statusDoc.finished });
         } catch (error) {
             return res.status(500).send({ error: 'Error while stopping' });
         }
@@ -67,7 +67,7 @@ class ChallengeController {
                 statusDoc.finished = true; 
                 await statusDoc.save(); 
             }
-            return res.status(200).send({ status: statusDoc });
+            return res.status(200).send({ status: statusDoc.status, finished: statusDoc.finished });
         } catch (error) {
             return res.status(500).send({ error: 'Error while stopping' });
         }
