@@ -16,7 +16,7 @@ class ChallengeController {
             if (!statusDoc) {
                 return res.status(404).send({ error: 'Status not found' });
             }
-            return res.status(200).send({ status: statusDoc.status });
+            return res.status(200).send({ status: statusDoc });
         } catch (error) {
             return res.status(500).send({ error: 'Error while getting status' });
         }
@@ -26,13 +26,14 @@ class ChallengeController {
         try {
             let statusDoc = await Status.findOne(); 
             if (!statusDoc) {
-                statusDoc = new Status({ status: true });
+                statusDoc = new Status({ status: true, finished: false });
                 await statusDoc.save();
             } else {
                 statusDoc.status = true; 
+                statusDoc.finished = false; 
                 await statusDoc.save();
             }
-            return res.status(200).send({ status: statusDoc.status });
+            return res.status(200).send({ status: statusDoc });
         } catch (error) {
             return res.status(500).send({ error: 'Error while starting' });
         }
@@ -42,13 +43,31 @@ class ChallengeController {
         try {
             let statusDoc = await Status.findOne();
             if (!statusDoc) {
-                statusDoc = new Status({ status: false });
+                statusDoc = new Status({ status: false, finished: false });
                 await statusDoc.save(); 
             } else {
                 statusDoc.status = false; 
+                statusDoc.finished = false; 
                 await statusDoc.save(); 
             }
-            return res.status(200).send({ status: statusDoc.status });
+            return res.status(200).send({ status: statusDoc });
+        } catch (error) {
+            return res.status(500).send({ error: 'Error while stopping' });
+        }
+    }
+
+    static async finish(req, res) {
+        try {
+            let statusDoc = await Status.findOne();
+            if (!statusDoc) {
+                statusDoc = new Status({ status: false, finished: true });
+                await statusDoc.save(); 
+            } else {
+                statusDoc.status = false; 
+                statusDoc.finished = true; 
+                await statusDoc.save(); 
+            }
+            return res.status(200).send({ status: statusDoc });
         } catch (error) {
             return res.status(500).send({ error: 'Error while stopping' });
         }

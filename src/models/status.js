@@ -4,6 +4,10 @@ const StatusSchema = new mongoose.Schema({
     status: {
         type: Boolean,
         required: true,
+    },
+    finished: {
+        type: Boolean,
+        required: true,
     }
 });
 
