@@ -9,7 +9,7 @@ const PlayerSchema = new mongoose.Schema({
   data: {
     type: String,
     required: true,
-    minlength: 3,
+    minlength: 2,
   },
   tempo: {
     type: String,
