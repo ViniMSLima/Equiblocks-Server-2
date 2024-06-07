@@ -6,6 +6,16 @@ const Player2Schema = new mongoose.Schema({
     required: true,
     minlength: 3,
   },
+  processo: {
+    type: String,
+    required: true,
+    minlength: 3,
+  },
+  status: {
+    type: String,
+    required: true,
+    minlength: 3,
+  },
   data: {
     type: String,
     required: true,

@@ -13,6 +13,9 @@
         { "src": "/challenge/getvalues", "dest": "/" },
         { "src": "/challenge/gettime", "dest": "/" },
         { "src": "/challenge/posttime", "dest": "/" },
-        { "src": "/challenge/finish", "dest": "/" }
+        { "src": "/challenge/finish", "dest": "/" },
+        { "src": "/challenge/getactiveprocess", "dest": "/" },
+        { "src": "/challenge/finishprocess", "dest": "/" },
+        { "src": "/challenge/postprocess", "dest": "/" }
       ]
 }

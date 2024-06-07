@@ -14,4 +14,8 @@ router
   .get("/gettime", ChallengeController.getTime)
   .post("/posttime", ChallengeController.postTime)
 
+  .get("/getactiveprocess", ChallengeController.getActiveProcess)
+  .post("/finishprocess", ChallengeController.finishProcess)
+  .post("/postprocess", ChallengeController.postProcess)
+
 module.exports = router;
