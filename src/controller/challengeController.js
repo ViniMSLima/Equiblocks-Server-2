@@ -145,6 +145,13 @@ class ChallengeController {
         if (!turma || !data || !periodo)
             return res.status(400).send({ message: 'Field\'s can\'t be empty' });
 
+        const activeProcess = await Process.findOne({ status: 'ativo' });
+
+        if(activeProcess) {
+            
+        }
+
+
         const process = new Process({
             turma,
             data,
