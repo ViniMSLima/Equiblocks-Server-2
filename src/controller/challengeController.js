@@ -148,9 +148,12 @@ class ChallengeController {
         const activeProcess = await Process.findOne({ status: 'ativo' });
 
         if(activeProcess) {
-            
+            const updatedProcess = await Process.findOneAndUpdate(
+                { status: 'ativo' },
+                { $set: { status: 'finalizado' } },
+                { new: true }
+            );
         }
-
 
         const process = new Process({
             turma,
