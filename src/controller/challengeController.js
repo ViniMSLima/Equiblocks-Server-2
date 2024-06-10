@@ -25,6 +25,16 @@ class ChallengeController {
 
     static async start(req, res) {
         try {
+            const process = await Process.findOneAndUpdate(
+                { status: 'ativo' },
+                { $set: { inicio: true } },
+                { new: true }
+            );
+
+            if(!process) {
+                return res.status(400).send({ error: 'There is no active process!'})
+            }
+
             let statusDoc = await Status.findOne();
             if (!statusDoc) {
                 statusDoc = new Status({ status: true, finished: false });
@@ -159,6 +169,7 @@ class ChallengeController {
             turma,
             data,
             periodo,
+            inicio: false,
             status: "ativo"
         });
 

@@ -6,6 +6,10 @@ const ProcessSchema = new mongoose.Schema({
     required: true,
     minlength: 3,
   },
+  inicio: {
+    type: Boolean,
+    required: true,
+  },
   data: {
     type: String,
     required: true,
