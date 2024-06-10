@@ -1,4 +1,5 @@
 const { Player2 } = require("../models/player2");
+const { Process } = require("../models/process");
 
 require("dotenv").config();
 
@@ -18,6 +19,12 @@ class PlayerController {
         if (!nome || !data || !tempo || !f1 || !f2 || !f3 || !f4 || !f5)
             return res.status(400).send({ message: 'Field\'s can\'t be empty' });
 
+        const process = await Process.findOne({ status: 'ativo' });
+
+        if (!process) {
+            return res.status(404).send({ error: 'Process not found' });
+        }
+
         const player = new Player2({
             nome,
             data,
@@ -29,6 +36,7 @@ class PlayerController {
             f5,
             tentativas,
             qtd_formas,
+            processo: process._id,
             acertos,
             release: Date.now(),
             createdAt: Date.now(),

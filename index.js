@@ -7,7 +7,7 @@ const app = express();
 // MongoDB connection
 async function connectToDB() {
   try {
-    await mongoose.connect("mongodb://localhost:27017/testeDB", {
+    await mongoose.connect("mongodb+srv://equiblocksvl:equiblocksvl@equiblocks.gput2z2.mongodb.net/", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
